@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<math.h>
+ 
+double polyFunc(double A, double B, double C, double D, double x)
+{
+	return (A*x*x*x + B*x*x + C*x + D);
+}
+void main ()
+{
+ 
+	double x, A, B, C, D, LV, HV;
+  int count = 0;    
+long result;      
+ 
+   printf("Finding the root for three degree polynomial Ax^3 + Bx^2 + Cx + D using Bisection method\n\n");
+   printf("Enter value for the following coefficients\n");
+   printf("A : ");          
+   scanf("%lf", &A);
+   printf("B : ");
+   scanf("%lf", &B);
+   printf("C : ");
+   scanf("%lf", &C);
+   printf("D : ");
+   scanf("%lf", &D);
+   printf("Initial brackets for root : \n");
+   printf("Low value : ");
+   scanf("%lf", &LV);
+	printf("High value : ");
+   scanf("%lf", &HV);
+	do
+	{
+ 
+    	x=(LV+HV)/2.0;  
+   	++count;
+   
+	if (polyFunc(A, B, C, D, LV)*polyFunc(A, B, C, D, x) < 0)
+        	HV=x;
+    	else
+        	LV=x;
+ 
+    	printf("%3d :New interval: [ %7.10lf .. %7.10lf ]\n", count, LV, HV);
+    	result = (long)(pow(10.,10)*HV-pow(10.,10)*LV);
+	}
+	while (result!=0);
+	printf("\nApproximate solution = %5.10lf\n\n", HV);
+}
